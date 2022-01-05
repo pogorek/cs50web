@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Google Images</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+		<link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<nav class="navbar navbar-light">
+			<div class="container-fluid justify-content-end">
+				<a class="navbar-brand" href="index.html">Search</a>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="row">
+				<div class="col text-center">
+					<img id="g_img" src="google_image.png" alt="google">
+				</div>
+			</div>
+			<form action="https://google.com/search">
+				<div class="row" id="search_text">
+					<div class="col text-center">
+						<div class="input_div">
+							<img src="glass.png" alt="magnifying glass">
+							<input id="input_search" type="text" name="q" autofocus>
+							<input type="hidden" name="tbm" value="isch">
+							<img src="camera.png" alt="camera">
+							<img src="voice.png" alt="microphone">
+							<button type="submit" value="Images Search">
+								<img src="glass_blue.png" alt="magnifying glass">
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    </body>
+</html>
