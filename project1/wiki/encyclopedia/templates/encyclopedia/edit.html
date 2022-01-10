@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Edit: {{ name }}</h1>
+    <h1>Editing: {{ name }}</h1>
 <div class="form-group">
     <form action="{% url 'edit' name=name %}" method="post">
         {% csrf_token %}

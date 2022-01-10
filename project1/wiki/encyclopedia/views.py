@@ -11,7 +11,8 @@ import random
 
 # class for search form
 class NewEntry(forms.Form):
-    entry = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'search'}))
+    entry = forms.CharField(label="", widget=forms.TextInput(
+        attrs={'class': 'search', 'placeholder': 'Search Encyclopedia'}))
 
 # class for new page
 class NewPage(forms.Form):
@@ -66,8 +67,7 @@ def search(request):
             for one in all_entries:
                 # if users entry matches one of existing entries
                 if entry_search.lower() == one.lower():
-                    # convert md to html and return page
-                    html = markdown2.markdown(util.get_entry(entry_search))
+                    # return page
                     return HttpResponseRedirect(reverse("entry", args=[entry_search]))
                 # if users entry is part of existing entry add it to found list
                 elif entry_search.lower() in one.lower():
@@ -159,7 +159,7 @@ def random_page(request):
     entries = util.list_entries()
     # save random entry to var
     ran_entry = random.choice(entries)
-    # double checking if entry exist
+    # double-checking if entry exist
     if util.get_entry(ran_entry):
         # convert md to html and return page
         html = markdown2.markdown(util.get_entry(ran_entry))
