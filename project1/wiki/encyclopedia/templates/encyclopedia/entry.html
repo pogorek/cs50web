@@ -6,4 +6,5 @@
 
 {% block body %}
     {{ entry | safe }}
+    <a class="btn btn-primary mt-2" role="button" href="{% url 'edit' name=name %}">Edit</a>
 {% endblock %}
