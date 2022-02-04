@@ -1,0 +1,13 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="row text-center mb-5">
+    <h2 class="mb-3">Categories</h2>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <!-- Show each category -->
+        {% for item in categories %}
+        <a class="btn btn-secondary btn-lg fs-4" href="{% url 'category_details' item.pk %}">{{ item }}</a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

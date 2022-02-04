@@ -1,0 +1,29 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<h2>My watchlist</h2>
+
+<div class="row mt-3">
+  <!-- Show each listings in user watchlist -->
+  {% for list in watchlist %}
+    <div class="col-md-4">
+      <a href="{% url 'listing_details' list.pk %}">
+        <div class="card mb-3">
+        <img class="card-img-top img_index" src="{{ list.img_url }}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{ list.title }}</h5>
+            {% if list.bid_current %}
+              <p class="card-text">Current price: {{ list.bid_current.bid_value }} $</p>
+            {% else %}
+              <p class="card-text">Current price: {{ list.bid_start }} $</p>
+            {% endif %}
+            <p class="card-text"><small class="text-muted">Created {{ list.time_created }}</small></p>
+          </div>
+        </div>
+      </a>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

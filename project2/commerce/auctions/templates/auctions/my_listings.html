@@ -1,0 +1,81 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<h2>My Listings</h2>
+
+    <h3>Active</h3>
+    <!-- Show each active listings of user -->
+    {% for item in listings %}
+        {% if item.active %}
+            <a href="{% url 'listing_details' item.pk %}">
+                <div class="card mb-3" style="max-width: 1000px;">
+                    <div class="row g-0">
+                        <div class="col-md-3">
+                        <img src="{{ item.img_url }}" class="img-fluid rounded-start img_bids" alt="{{ item.title }}">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="me-auto text-monospace text-muted">
+                                        <h5 class="card-title">{{ item.title }}</h5>
+                                    </div>
+                                    <div class="p-2">
+                                        <small>Created at <strong>{{ item.time_created }}</strong></small>
+                                    </div>
+                                </div>
+                                <p class="card-text">{{ item.description }}</p>
+                                {% if item.bid_current %}
+                                    <p class="card-text">Current bid: <strong>{{ item.bid_current.bid_value }} $</strong>&emsp;
+                                    {% if item.bid_current.author == request.user %}
+                                        <strong>You are winning!</strong>
+                                    {% else %}
+                                        Currently winning: <strong>{{ item.bid_current.author }}</strong>
+                                    {% endif %}
+                                {% else %}
+                                    <p class="card-text">No bids yet.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endif %}
+    {% empty %}
+        <h2>No Listings</h2>
+    {% endfor %}
+
+    <h3>Finished</h3>
+    <!-- Show each finished listings of user -->
+    {% for item in listings %}
+        {% if not item.active %}
+            <a href="{% url 'listing_details' item.pk %}">
+                <div class="card mb-3" style="max-width: 1000px;">
+                    <div class="row g-0">
+                        <div class="col-md-3">
+                        <img src="{{ item.img_url }}" class="img-fluid rounded-start img_bids" alt="{{ item.title }}">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="me-auto text-monospace text-muted">
+                                        <h5 class="card-title">{{ item.title }}</h5>
+                                    </div>
+                                    <div class="p-2">
+                                        <small>Created at <strong>{{ item.time_created }}</strong></small>
+                                    </div>
+                                </div>
+                                <p class="card-text">{{ item.description }}</p>
+                                <p class="card-text">Final price: <strong>{{ item.bid_current.bid_value }} $</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endif %}
+    {% empty %}
+        <h2>No Listings</h2>
+    {% endfor %}
+
+
+{% endblock %}

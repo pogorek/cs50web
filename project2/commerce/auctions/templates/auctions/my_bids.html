@@ -1,0 +1,75 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<h2>Won auctions</h2>
+
+<!-- Show each aution won by user -->
+{% for item in listings %}
+<a href="{% url 'listing_details' item.pk %}">
+<div class="card mb-3" style="max-width: 1000px;">
+  <div class="row g-0">
+    <div class="col-md-3">
+      <img src="{{ item.img_url }}" class="img-fluid rounded-start img_bids" alt="{{ item.title }}">
+    </div>
+    <div class="col-md-9">
+      <div class="card-body">
+        <div class="d-flex">
+            <div class="me-auto text-monospace text-muted">
+                <h5 class="card-title">{{ item.title }}</h5>
+            </div>
+            <div class="p-2">
+                <small>Created at <strong>{{ item.time_created }}</strong></small>
+            </div>
+        </div>
+        <p class="card-text">{{ item.description }}</p>
+        <p class="card-text">Final price: <strong>{{ item.bid_current.bid_value }} $</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+</a>
+{% empty %}
+    <h4>No listings.</h4>
+{% endfor %}
+
+<h2>My Bids</h2>
+<!-- Show all auctions on which user is bidding -->
+{% for item in bids %}
+{% if item.auction.active %}
+<a href="{% url 'listing_details' item.auction.pk %}">
+<div class="card mb-3" style="max-width: 1000px;">
+  <div class="row g-0">
+    <div class="col-md-3">
+      <img src="{{ item.auction.img_url }}" class="img-fluid rounded-start img_bids" alt="{{ item.title }}">
+    </div>
+    <div class="col-md-9">
+      <div class="card-body">
+        <div class="d-flex">
+            <div class="me-auto text-monospace text-muted">
+                <h5 class="card-title">{{ item.auction.title }}</h5>
+            </div>
+            <div class="p-2">
+                <small>Created at <strong>{{ item.auction.time_created }}</strong></small>
+            </div>
+        </div>
+        <p class="card-text">{{ item.auction.description }}</p>
+
+        <p class="card-text">Current bid: <strong>{{ item.auction.bid_current.bid_value }} $</strong>&emsp;
+        {% if item.auction.bid_current.author == request.user %}
+            <strong>You are winning!</strong>
+        {% else %}
+            Currently winning: <strong>{{ item.auction.bid_current.author }}</strong>
+        {% endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</a>
+{% endif %}
+    {% empty %}
+    <h4>No listings.</h4>
+    {% endfor %}
+
+{% endblock %}
