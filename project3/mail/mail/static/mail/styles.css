@@ -1,0 +1,39 @@
+textarea {
+	min-height: 400px;
+}
+
+/* INDEX */
+.mail {
+	border: solid 1px #000;
+	border-radius: 2px;
+	margin-bottom: 3px;
+	padding: 3px;
+	cursor: pointer;
+}
+
+.sender,
+.subject,
+.timestamp,
+.archived {
+	float: left;
+}
+
+.sender {
+	width: 25%;
+	padding-left: 5px;
+}
+
+.subject {
+	width: 50%;
+}
+
+.timestamp {
+	width: 25%;
+	text-align: right;
+	padding-right: 5px;
+}
+
+/* MAIL VIEW */
+.mail_view {
+	border: solid 1px #900;
+}
