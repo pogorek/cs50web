@@ -1,0 +1,11 @@
+{% extends "network/layout.html" %}
+{% load static %}
+{% block script %}
+    <script src="{% static 'network/user_page.js' %}" defer></script>
+{% endblock script %}
+{% block body %}
+    <div id="user-box"></div>
+    <div id="follow-box"></div>
+    <div id="post-box" class="mx-2"></div>
+    <div id="pag-box"></div>
+{% endblock %}

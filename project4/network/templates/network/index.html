@@ -1,0 +1,31 @@
+{% extends "network/layout.html" %}
+{% load static %}
+{% block script %}
+    <script src="{% static 'network/index.js' %}" defer></script>
+{% endblock script %}
+{% block body %}
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div>
+                <div class="card mb-2">
+                    <form id="post-new">
+                        <div class="card-body">
+                            <h5 class="card-title">New post</h5>
+                            <textarea class="form-control" id="new_post_textarea" rows="3"></textarea>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-2">
+                                    <button type="submit" class="btn btn-primary">Post</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="post-box"></div>
+            <div id="pag-box"></div>
+        </div>
+    </div>
+{% endblock %}

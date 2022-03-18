@@ -1,0 +1,35 @@
+{% extends "network/layout.html" %}
+{% block body %}
+    TODO
+    <div class="container-fluid">
+        <div class="row">
+            <div class="new_post col-8 offset-2">
+                <span>New Post</span>
+                <form>
+                    <textarea class="form-control" id="new_post_textarea" rows="3"></textarea>
+                    <button type="submit" class="btn btn-primary">Post</button>
+                </form>
+            </div>
+            {% for post in posts %}
+                <div class="each_post col-8 offset-2">
+                    {{ post.author }}
+                    <br>
+                    {{ post.content }}
+                    <br>
+                    {{ post.time_created }}
+                    <br>
+                    {{ post.likes.all.count }}
+                    <br>
+                </div>
+            {% endfor %}
+            <div class="each_post col-8 offset-2">
+                FOLLOW:
+                <br>
+                {{ user.following }}
+                <br>
+                <br>
+                {% for user in user.follow.all %}{{ user.id }}{% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,6 @@
+
+.new_post, .each_post{
+    border: 2px solid #dd6969;
+    min-height: 200px;
+    margin-bottom: 20px;
+}
